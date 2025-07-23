@@ -1,6 +1,6 @@
 ## About
 
-This is a simple command-line weather application built with Dart, following the Clean Architecture principles. It fetches hourly weather data (mocked) for a given city and displays it in a readable terminal output. The project is structured into clear layers (data, domain, and presentation), making it modular, scalable, and easy to maintain.
+This is a simple command-line weather application built with Dart, following the Clean Architecture principles. It fetches hourly weather data (mocked) for a given city and displays it in a readable terminal output. The project is structured into clear layers (data,core,domain, and presentation), making it modular, scalable, and easy to maintain.
 
 Perfect for practicing architecture patterns or building quick CLI tools in Dart.
 
