@@ -17,3 +17,8 @@ Below is a sample hourly temperature output for **Washington**:
 1.  Clone the repository: `git clone https://github.com/CodeByQafar/dart_cli_weather_clean_arch.git`
 2.  Install dependencies: `dart pub get`
 3.  Run the application: `dart run`
+
+
+## ToDo
+
+First of all, we need to write unit tests, improve the performance of the CLI screen, and implement specific failure and exception scenarios.

@@ -1,3 +1,4 @@
+import 'package:weather_app/core/errors/exceptions/exception.dart';
 import 'package:weather_app/data/models/weather_model.dart';
 import 'package:weather_app/core/enums/enum.dart';
 import 'package:weather_app/data/constants.dart';
@@ -12,9 +13,11 @@ class WeatherRemoteDatasource {
       ),
     );
     if (response.statusCode != 200) {
-      throw Exception('Failed to load weather data');
+      throw ServerException(
+        'Failed to load weather data response code: ${response.statusCode}',
+      );
     } else {
-      return WeatherModel.fromJson(json.decode(response.body));
+      return WeatherModel.fromJson(json.decode(response.body), city);
     }
   }
 }
