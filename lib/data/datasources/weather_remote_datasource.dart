@@ -17,7 +17,9 @@ class WeatherRemoteDatasource {
         'Failed to load weather data response code: ${response.statusCode}',
       );
     } else {
-      return WeatherModel.fromJson(json.decode(response.body), city);
+      Map<String, dynamic> data = json.decode(response.body);
+      data['city'] = city;
+      return WeatherModel.fromJson(data);
     }
   }
 }

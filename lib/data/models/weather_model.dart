@@ -12,17 +12,18 @@ class WeatherModel extends Weather {
     required this.city,
   }) : super(temperature: temperature, time: time, city: city);
 
-  factory WeatherModel.fromJson(Map<String, dynamic> json, City city) {
+  factory WeatherModel.fromJson(Map<String, dynamic> json) {
     List<DateTime> timeList = List<DateTime>.from(
       json['hourly']['time'].map((time) => DateTime.parse(time)),
     );
     List<double> temperatureList = List<double>.from(
       json['hourly']['temperature_2m'].map((temp) => temp.toDouble()),
     );
+    City cityName = json['city'];
     return WeatherModel(
       temperature: temperatureList,
       time: timeList,
-      city: city,
+      city: cityName,
     );
   }
 }

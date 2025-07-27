@@ -1,6 +1,5 @@
 abstract class Exception {
   final String? message;
-
   Exception(this.message);
 
   @override
@@ -9,7 +8,6 @@ abstract class Exception {
 
 class InputException implements Exception {
   final String? message;
-
   InputException(this.message);
 
   @override
@@ -18,7 +16,6 @@ class InputException implements Exception {
 
 class ServerException implements Exception {
   final String? message;
-
   ServerException(this.message);
 
   @override

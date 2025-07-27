@@ -1,5 +1,5 @@
 import 'package:weather_app/data/datasources/weather_remote_datasource.dart';
-import 'package:weather_app/data/repositories/weather_repository.dart';
+import 'package:weather_app/domain/repositories/weather_repository.dart';
 import 'package:weather_app/data/models/weather_model.dart';
 import 'package:weather_app/core/enums/enum.dart';
 

@@ -1,5 +1,4 @@
-import 'package:weather_app/core/errors/exceptions/exception.dart';
-import 'package:weather_app/presentation/extensions/weather_cli_extension.dart';
+import 'package:weather_app/presentation/extensions/input_validation_extension.dart';
 import 'package:weather_app/domain/usecases/get_weather.dart';
 import 'package:weather_app/data/models/weather_model.dart';
 import 'package:weather_app/core/enums/enum.dart';
@@ -12,7 +11,7 @@ class WeatherCli {
   WeatherCli(this.getWeather);
 
   Future<void> run() async {
-    City cityName = await getCityInput();
+    dynamic cityName = await getCityInput();
     final weatherData = await getWeather.call(cityName);
 
     showWeatherData(weatherData);
@@ -28,36 +27,39 @@ class WeatherCli {
     }
   }
 
-  Future<City> getCityInput() async {
+  Future<dynamic> getCityInput() async {
     stdout.write('\nAvailable cities write number or name of city:\n');
     City.values.asMap().forEach((index, city) {
       stdout.write('${index + 1}.${city.name}\n');
     });
 
-    dynamic input = stdin.readLineSync() ?? '';
-    return inputChechk(input)!;
+    String input = stdin.readLineSync() ?? '';
+    if (inputCheck(input) is City)
+      return inputCheck(input);
+    else if (input == 'exit') {
+      print('\nExiting the application.');
+      exit(0);
+    } else {
+      print('\nInvalid input. Please try again.');
+    }
+    return getCityInput();
   }
 
-  City? inputChechk(input) {
+  dynamic inputCheck(input) {
     if (input.isNotEmpty) {
       if (isNumeric(input)) {
         input = int.parse(input);
-        if (input > 0 && input <= City.values.length) {
+        if (input > 0 && input <= City.values.length)
           return City.values[input - 1];
-        }
+        else
+          return null;
       } else if (isAlphabetic(input)) {
-        return City.values
-            .where((name) => name.name.toLowerCase() == input.toLowerCase())
-            .first;
-      } else {
-        throw InputException(
-          'Invalid input. Please enter a valid city name or number.',
-        );
+        input = input.toLowerCase();
+        dynamic city = City.values
+            .where((name) => name.name == input)
+            .firstOrNull;
+        return city;
       }
-    } else {
-      throw InputException(
-        'Invalid input. Please enter a valid city name or number.',
-      );
     }
   }
 }
