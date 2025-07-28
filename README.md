@@ -21,4 +21,4 @@ Below is a sample hourly temperature output for **Washington**:
 
 ## ToDo
 
-First of all, we need to write unit tests, improve the performance of the CLI screen, and implement specific failure and exception scenarios.
+1. write unit tests
