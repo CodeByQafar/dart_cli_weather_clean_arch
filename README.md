@@ -19,6 +19,4 @@ Below is a sample hourly temperature output for **Washington**:
 3.  Run the application: `dart run`
 
 
-## ToDo
 
-1. write unit tests
